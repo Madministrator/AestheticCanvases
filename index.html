@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Aesthetic Canvases</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="container text-center">
+				<canvas id="clock" width="600" height="600" style="display: inline-block;"></canvas>
+				<div id="controls">
+						<!--Controls will be provided for the following:
+								- toggle tick marks / numbers
+								- color pickers (Do this last)
+										- face color
+										- base color
+										- background color
+								- font
+								- toggle 3d/2d effects
+
+								Each of these will need an HTML element and a JavaScript function.
+								I probably will want to create my own HTML color picker with a canvas
+								element as another class.
+						-->
+						<h1>Adjustable Settings</h1>
+						<button type="button" class="btn btn-primary btn-lg" 
+							style="margin: 15px 0;" onclick="toggleTicks()">Toggle Tick Marks</button>
+						<button type="button" class="btn btn-primary btn-lg" 
+							style="margin: 15px;" onclick="toggleGradient()">2D/3D Gradient</button>
+						</br>
+						<label for="widthRange">Canvas Width</label>
+						<input type="range" class="custom-range" id="widthRange"
+							min="200" max="1000" value="600" step="25"
+							onchange="document.getElementById('clock').width = this.value">
+						<label for="heightRange">Canvas Height</label>
+						<input type="range" class="custom-range" id="heightRange"
+							min="200" max="1000" value="600" step="25"
+							onchange="document.getElementById('clock').height = this.value">
+						<div id="color-controls">
+							<h2>Color Controls</h2>
+							<ul class="list-group">
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<label for="faceColorPicker">Clock Face Color</label>
+									<input id="faceColorPicker" type="color" style="width: 50%; height: 2.5em;"
+										value="#ffffff" onchange="changeFaceColor(this.value)"/>
+								</li>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<label for="baseColorPicker">Clock Hands and Ticks Color</label>
+									<input id="baseColorPicker" type="color" style="width: 50%; height: 2.5em;"
+										value="#333333" onchange="changeBaseColor(this.value)"/>
+								</li>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<label for="backgroundColorPicker">Background Color</label>
+									<input id="backgroundColorPicker" type="color" style="width: 50%; height: 2.5em;"
+										value="#333333" onchange="changeBackgroundColor(this.value)"/>
+								</li>
+							</ul>
+						</div>
+				</div>
+		</div>
+
+		<!--Reminder that adding the script tags at the bottom makes
+				sure that the page has loaded before the code runs-->
+		<script src="scripts/clock.js"></script>
+		<script>
+				let clock = new Clock(document.getElementById('clock'))
+				setInterval(function(){ clock.drawClock() }, 1000)
+
+				function toggleTicks() {
+					clock.showTickMarks(!clock.drawTickMarks)
+					clock.drawClock()
+				}
+
+				function toggleGradient() {
+					clock.showGradient(clock.flatten)
+					clock.drawClock()
+				}
+
+				function changeFaceColor(str) {
+					clock.setFaceColor(str)
+					clock.drawClock()
+				}
+
+				function changeBaseColor(str) {
+					clock.setBaseColor(str)
+					clock.drawClock()
+				}
+
+				function changeBackgroundColor(str) {
+					clock.setBackgroundColor(str)
+					clock.drawClock()
+				}
+		</script>
+	</body>
+</html>
