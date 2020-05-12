@@ -16,3 +16,5 @@ These are very rough ideas, not meant to go into real detail.
 - fireflies
 - spiral graphs
 - fractal geometery
+- a little something that chases around your mouse.
+- fireworks that fly in from the bottom of the screen and explode where you clicked.
