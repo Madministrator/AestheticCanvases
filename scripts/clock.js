@@ -3,7 +3,9 @@
  * Provides some customization options.
  * Inspired by https://www.w3schools.com/graphics/canvas_clock.asp
  * and https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial
- * but made more modular as a class object.
+ * but made more modular as a class object, and I use polar coordinates
+ * to draw the clock rather than shifting the entire context.
+ * 
  * @param canvas {Element} The canvas element we want to draw on.
  */
 class Clock {
@@ -11,7 +13,6 @@ class Clock {
         this.canvasElement = canvas
         this.ctx = canvas.getContext('2d')
         // settings for the clock's appearance
-        // TODO make getters / setters for each of these.
         this.drawTickMarks = false
         this.faceColor = 'white'
         this.baseColor = '#333'
