@@ -15,3 +15,4 @@ These are very rough ideas, not meant to go into real detail.
 - glowing particles
 - fireflies
 - spiral graphs
+- fractal geometery
