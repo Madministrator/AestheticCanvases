@@ -5,7 +5,7 @@ In addition, I want all of these programs to be easy to use, so that all you nee
 
 At this point, it's all just ideas that I am brainstorming before I actually start coding. If you're interested in trying this yourself, there [are some good resources on the internet](https://www.w3schools.com/graphics/canvas_intro.asp) that you can read up on how canvas elements work and how to use them. There are [plenty of tutorials](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial) out there if you look around for a little bit.
 
-I realize I'm not the first to do most of these, [here is an example of some crazier ideas](https://www.jwz.org/xscreensaver/screenshots/). This project is more for fun than as an academic research project or anything meant to be taken seriously.
+I realize I'm not the first to do most of these, [here is an example of a similar concept done for linux](https://www.jwz.org/xscreensaver/screenshots/), and [here is another kind of project done with canvas elements](https://kunalverma94.github.io/gallery/gallery.html). This project is more for fun than as an academic research project or anything meant to be taken seriously.
 
 ## Idea List
 These are very rough ideas, not meant to go into real detail.
