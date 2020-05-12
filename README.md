@@ -1,4 +1,4 @@
-# AestheticCanvases
+# Canvas Playground
 This is just a simple project to pass some free time. The primary goal is to just write some JavaScript that interacts with an HTML5 canvas element to draw some really neat things.
 
 In addition, I want all of these programs to be easy to use, so that all you need to do is call a single function and pass the HTML5 canvas element to them to start filling the canvas with some aesthetically pleasing appearance that could be added to any webpage.
