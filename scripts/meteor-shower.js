@@ -82,6 +82,7 @@ class MeteorShower {
 		   }
 		   // append the meteor
 		   let newMeteor = {
+				x: startX, 
 				y: startY, 
 				xv: xVelocity, 
 				yv: yVelocity,
