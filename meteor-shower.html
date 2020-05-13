@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Meteor Shower | Madministrator's Canvas Playground</title>
+    </head>
+    <body>
+        <canvas id="meteor-shower" style="height: 100%; width: 100%"></canvas>
+        <script src="scripts/meteor-shower.js"></script>
+        <script>
+            let shower = new MeteorShower(document.getElementById('meteor-shower'))
+            // shower.start()
+            function animate() {
+                shower.step()
+                raf = window.requestAnimationFrame(animate)
+            }
+
+            animate()
+            // setInterval(function(){shower.step()}, 500)
+        </script>
+    </body>
+</html>
