@@ -5,10 +5,12 @@
  * and https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial
  * but made more modular as a class object, and I use polar coordinates
  * to draw the clock rather than shifting the entire context.
- * 
- * @param canvas {Element} The canvas element we want to draw on.
  */
 class Clock {
+    /**
+     * Creates a Clock object.
+     * @param {Element} canvas the canvas we wish to draw on.
+     */
     constructor(canvas) {
         this.canvasElement = canvas
         this.ctx = canvas.getContext('2d')
@@ -88,7 +90,7 @@ class Clock {
         let radius = this.canvasElement.height <= this.canvasElement.width ? 
             this.canvasElement.height / 2 : this.canvasElement.width / 2
         // center the context origin in the canvas
-        this.ctx.translate(radius, radius)
+        this.ctx.translate(this.canvasElement.width / 2, this.canvasElement.height / 2)
         // perform all the drawing operations
         radius = radius * 0.95
         this.drawFace(radius)
