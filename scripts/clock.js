@@ -90,7 +90,7 @@ class Clock {
         let radius = this.canvasElement.height <= this.canvasElement.width ? 
             this.canvasElement.height / 2 : this.canvasElement.width / 2
         // center the context origin in the canvas
-        this.ctx.translate(radius, radius)
+        this.ctx.translate(this.canvasElement.width / 2, this.canvasElement.height / 2)
         // perform all the drawing operations
         radius = radius * 0.95
         this.drawFace(radius)
