@@ -32,6 +32,15 @@
 					</div>
 				</div>
 			</div>
+			<div class="col">
+				<div class="card border-secondary">
+					<div class="card-header"><a href="game_of_life.html">Conway's Game of Life</a></div>
+					<div class="card-body">
+						<p class="card-text">A very simple illustration of John Horton Conway's Game of Life. The "game board" starts with a random set of starting cells.</p>
+						<canvas id="life"></canvas>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- Optional JavaScript -->
@@ -43,6 +52,7 @@
 	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
 	<script src="scripts/clock.js"></script>
 	<script src="scripts/meteor-shower.js"></script>
+	<script src="scripts/gameOfLife.js"></script>
 	<script>
 		window.addEventListener('load', function () {
 			let clock = new Clock(document.getElementById('clock'))
@@ -52,6 +62,16 @@
 			for (let i = 0; i < 100; i++) {
 				shower.step()
 			}
+
+			let lifeGame
+			do {
+				lifeGame = new GameOfLife(document.getElementById('life'), window, 30)
+				for (let i = 0; i < 20; i++) {
+					lifeGame.step()
+				}
+			} while (!lifeGame.lifeExists())
+			lifeGame.drawGrid(false)
+
 		})
 	</script>
 </body>

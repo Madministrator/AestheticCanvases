@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Game of Life | Madministrator's Canvas PLayground</title>
+    <style>
+        canvas {
+            position: fixed;
+            padding: 0;
+            margin: 0;
+            top: 0;
+            left: 0;
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="life" style="min-width: 99.5%; height: 99%"></canvas>
+    <script src="scripts/gameOfLife.js"></script>
+    <script>
+        let gameOfLife = new GameOfLife(document.getElementById('life'), window, 100)
+
+        function animate() {
+            gameOfLife.step()
+            raf = window.requestAnimationFrame(animate)
+        }
+
+        // animate() // SUPER FAST
+        gameOfLife.step()
+        setInterval(function () {
+            gameOfLife.step()
+        }, 300)
+    </script>
+</body>
+
+</html>
