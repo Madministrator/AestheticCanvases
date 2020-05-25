@@ -68,8 +68,9 @@ class GameOfLife {
             - All other live cells die, while all dead cells stay dead.
         All rules are applied to all cells simultaneously.
         */
-       let newStates = this.cells.slice() // get a deep copy of the array so we don't modify the original
+       let newStates = Array(this.cells.length)
        for (let i = 0; i < this.cells.length; i++) {
+           newStates[i] = Array(this.cells[i].length)
            for (let j = 0; j < this.cells[i].length; j++) {
                // Count the number of living neighbors
                let lifeCount = 0
@@ -91,6 +92,7 @@ class GameOfLife {
                }
            }
        }
+       this.cells = newStates
     }
 
     /**
