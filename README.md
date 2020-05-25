@@ -19,4 +19,4 @@ These are very rough ideas, not meant to go into real detail.
 - a little something that chases around your mouse.
 - fireworks that fly in from the bottom of the screen and explode where you clicked.
 - application of 'boids' algorithm to generate swarm behavior to start making something interesting.
-- Conway's Game of Life
+  - I could have fish drawn as boids and have a school of fish on screen
