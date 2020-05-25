@@ -66,11 +66,11 @@
 			let lifeGame
 			do {
 				lifeGame = new GameOfLife(document.getElementById('life'), window, 30)
+				lifeGame.drawLines = false
 				for (let i = 0; i < 20; i++) {
 					lifeGame.step()
 				}
 			} while (!lifeGame.lifeExists())
-			lifeGame.drawGrid(false)
 
 		})
 	</script>

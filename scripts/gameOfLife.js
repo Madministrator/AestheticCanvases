@@ -35,6 +35,20 @@ class GameOfLife {
                this.cells[i][j] = (Math.random() < percentStartAlive)
            }
        }
+
+       this.drawLines = true
+       /*
+            Add a mouse click event which will toggle the state of a cell wherever the 
+            mouse clicks.
+       */
+      const cellDimension = this.cellSide
+      const gol = this
+      this.canvas.addEventListener('click', function(e) {
+          let x = Math.floor(e.clientX / cellDimension)
+          let y = Math.floor(e.clientY / cellDimension)
+          gol.cells[y][x] = !gol.cells[y][x]
+          gol.drawGrid()
+      })
     }
 
     /**
@@ -82,7 +96,7 @@ class GameOfLife {
     /**
      * Draws the grid where the cells live and die.
      */
-    drawGrid(showLines = true) {
+    drawGrid() {
         this.ctx.save()
         // clear the screen
         this.ctx.clearRect(0,0,this.canvas.clientWidth, this.canvas.clientHeight)
@@ -98,7 +112,7 @@ class GameOfLife {
                 if (this.cells[i][j]) {
                     this.ctx.fill()
                 }
-                if (showLines) {this.ctx.stroke()}
+                if (this.drawLines) {this.ctx.stroke()}
             }
         }
         this.ctx.restore()
