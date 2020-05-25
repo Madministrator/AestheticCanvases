@@ -41,7 +41,16 @@
 					</div>
 				</div>
 			</div>
-		</div>
+			<div class="col">
+				<div class="card border-secondary">
+					<div class="card-header"><a href="spiralgraph.html">Spiral Graphs</a></div>
+					<div class="card-body">
+						<p class="card-text">Just some fun with polar coordinates and simple geometery.</p>
+						<canvas id="spiral"></canvas>
+					</div>
+				</div>
+			</div>
+		</div><!--End of Row 1-->
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -53,6 +62,7 @@
 	<script src="scripts/clock.js"></script>
 	<script src="scripts/meteor-shower.js"></script>
 	<script src="scripts/gameOfLife.js"></script>
+	<script src="scripts/spiralgraph.js"></script>
 	<script>
 		window.addEventListener('load', function () {
 			let clock = new Clock(document.getElementById('clock'))
@@ -68,10 +78,16 @@
 				lifeGame = new GameOfLife(document.getElementById('life'), window, 30)
 				lifeGame.drawLines = false
 				for (let i = 0; i < 20; i++) {
-					lifeGame.step()
+					lifeGame.lifeCycle()
 				}
 			} while (!lifeGame.lifeExists())
-
+			lifeGame.drawGrid()
+			
+			let spiral = new SpiralGraph(document.getElementById('spiral'))
+			for(let i = 0; i < 1000; i++) {
+				spiral.movePoints()
+			}
+			spiral.drawSpiral()
 		})
 	</script>
 </body>

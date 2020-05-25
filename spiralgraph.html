@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Spiral Graph | Madministrator's Canvas Playground</title>
+        <!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+        <style>
+            #controls {
+                display: block;
+                padding-top: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container text-center">
+            <canvas id="spiral" style="height: 99%; width: 99.5%;" onclick="toggleAnimation()"></canvas>
+            <div id="controls">
+                <!--
+                    numPoints : dropdown menu
+                    turnFraction: range 0 to 1
+                    spreadPower: range -1 to 1
+                -->
+                <h1>Settings</h1>
+                <h6 class="text-muted">Click on the canvas to pause</h6>
+                <label for="pointsRange">Number of Points</label>
+                <input type="range" class="custom-range" id="pointsRange"
+                min="10" max="1000" value="200" step="10"
+                onChange="spiral.numPoints = this.value; spiral.drawSpiral();">
+                <label for="turnRange">Turn Fraction (Only works when paused)</label>
+                <input type="range" class="custom-range" id="turnRange"
+                min="0" max="1" value="0.5" step="0.0001"
+                onChange="modifyTurnFraction()">
+                <label for="spreadRange">Spread of Points</label>
+                <input type="range" class="custom-range" id="spreadRange"
+                min="-1" max="1" value="1" step="0.1"
+                onChange="spiral.spreadPower = this.value; spiral.drawSpiral();">
+            </div>
+        </div>
+        <script src="scripts/spiralgraph.js"></script>
+        <script>
+            let spiral = new SpiralGraph(document.getElementById('spiral'))
+            let turnRange = document.getElementById('turnRange')
+            let raf = window.requestAnimationFrame(animate)
+            let animated = true
+
+            function modifyTurnFraction() {
+                spiral.turnFraction = parseFloat(turnRange.value)
+                spiral.drawSpiral()
+            }
+
+            function toggleAnimation() {
+                if (animated) {
+                    animated = false
+                    window.cancelAnimationFrame(raf)
+                } else {
+                    animated = true
+                    animate()
+                }
+            }
+            function animate() {
+                spiral.step()
+                turnRange.value = spiral.turnFraction
+                raf = window.requestAnimationFrame(animate)
+            }
+        </script>
+    </body>
+</html>
