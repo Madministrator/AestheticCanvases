@@ -14,7 +14,10 @@ These are very rough ideas, not meant to go into real detail.
 - sine / cosine wave generated patterns
 - glowing particles
 - fireflies
-- fractal geometery generator
+- fractal geometery generator: [There are a lot that you can do with fractals](https://en.wikipedia.org/wiki/List_of_fractals_by_Hausdorff_dimension)
+  - [A clock with fractal patterned hands](https://www.youtube.com/watch?v=4SH_-YhN15A)
+  - An entire page of canvases that have fractal geometry winding and unwinding
+  
 - a little something that chases around your mouse.
 - fireworks that fly in from the bottom of the screen and explode where you clicked.
 - application of 'boids' algorithm to generate swarm behavior to start making something interesting.
