@@ -4,12 +4,19 @@
         <title>NPC generator | Madministrator's Procedural Playground</title>
     </head>
     <body>
-        <p>Check the console! I haven't gotten too far yet!</p>
-        <script src="textgen/D&D_NPC/NpCTraits.js"></script>
+        <p id="randomNPC"></p>
+        <button type="button" onclick="generateNPC()">Generate a new npc</button>
+        <script src="textgen/D&D_NPC/NpcTraits.js"></script>
         <script src="textgen/SentenceGen.js"></script>
         <script>
-            let sg = new SentenceGen(npcTraits)
-            sg.generateSentence()
+            function generateNPC()
+            {
+                let sg = new SentenceGen(npcTraits)
+                let desc = sg.generateSentence()
+                document.getElementById("randomNPC").innerHTML = desc
+            }
+
+            generateNPC()
         </script>
     </body>
 </html>

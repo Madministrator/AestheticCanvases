@@ -35,18 +35,21 @@ class SentenceGen {
     generateSentence()
     {
         let template = this.pickFrom("template")
-        console.log(template)
         while (this.parsingRequired(template))
         {
-            console.debug("Parsing is required, making a pass")
             template = this.reduceCategories(template)
             template = this.resolveAllPickers(template)
             template = this.resolveAnChecks(template)
         }
         template = this.applyGrammar(template)
-        console.log(template)
         return template
     }
+
+    /*
+     * TODO: Track state during sentence generation, this will allow me to
+     * create a sort of animation or display of the parsing process, which
+     * I think would be a pretty cool feature. 
+     */
 
     applyGrammar(template)
     {
@@ -127,7 +130,6 @@ class SentenceGen {
         const regexes = Object.values(this.regex)
         for (let i = 0; i < regexes.length; i++)
         {
-            console.debug("Checking with:", regexes[i])
             if (regexes[i].test(template))
             {
                 return true
@@ -143,6 +145,7 @@ class SentenceGen {
      */
     pickFrom(category)
     {
+        // TODO: prevent repeats, track state of which value was chosen last from each category (simple map of key, last used index)
         category = category.toLowerCase();
         if (this.categories[category] == undefined || this.categories[category].length === 0)
         {
@@ -163,24 +166,28 @@ class SentenceGen {
      */
     reduceCategories(template)
     {
+        /*
+         * TODO: somehow make it so that some categories can be dependent on other categories.
+         * So that male names are picked when gender resolves to male, and so on. 
+         * Perhaps delimiting conditional categories with @dependency/<value>@ would work?
+         * Issues:
+         * - multiple dependencies: Elf male names vs female halfling names, both race and gender are dependencies
+         * - multiple instances of a dependency. If I use dwarf twice in a sentence, and race is a dependency, this is hard.
+         * - the dependent category could come in later during sentence generation, possibly after resolving a non-dependent category.
+         * This will likely require a separate function, called reduceDependentCategories or something.
+         */
         let output = template.slice()
-        console.debug("beginning to reduce categories")
         while (this.regex.categoryRef.test(output))
         {
-            console.debug("Reducing a category")
             const firstMatch = output.match(this.regex.categoryRef)
             // get the name of the category found
             const category = firstMatch[0].substr(1, firstMatch[0].length - 2)
-            console.debug(`Found category reference: "${category}"`)
             // get a string from that category
             const newString = this.pickFrom(category)
-            console.debug(`From "${category}" picked: ${newString}`)
             // inject the new string into the template
             output = output.replace(this.regex.categoryRef, newString)
-            console.debug("Template after category reduction: ", output)
         }
-        console.debug("finished reducing categories")
-
+        
         return output
     }
 
@@ -192,26 +199,28 @@ class SentenceGen {
     resolveAnChecks(template)
     {
         let output = template.slice()
-        console.debug("beginning to resolve a/an checks")
-
         while (this.regex.aOrAn.test(output))
         {
-            console.debug("Resolving a/an check")
             const firstMatch = output.match(this.regex.aOrAn)
             // search for the first letter after the <a>
             const nextChar = output.substr(firstMatch["index"] + 3).match(/\w/)
             let switchToAn = false
             // it is possible the <a> is at the end of the string, so we do a null safety check
-            if (nextChar != null && "aeiou".includes(nextChar[0].toLowerCase()))
+            if (nextChar != null)
             {
-                // if the next character is a vowel, resolve to "an"
-                switchToAn = true
+                if ("aeiou".includes(nextChar[0].toLowerCase()))
+                {
+                    // if the next character is a vowel, resolve to "an"
+                    switchToAn = true
+                }
+                if (nextChar["index"] == firstMatch["index"] + 4)
+                {
+                    // there was no whitespace, insert some
+                    output = output.slice(0, nextChar["index"]) + ' ' + output.slice(nextChar["index"])
+                }
             }
-            console.debug(`Resolving to ${switchToAn? "an" : "a"}`)
             output = output.replace(this.regex.aOrAn, switchToAn? "an" : "a")
         }
-
-        console.debug("finished reducing a/an checks")
         return output
     }
 
@@ -223,21 +232,15 @@ class SentenceGen {
     resolveAllPickers(template)
     {
         let output = template.slice()
-        console.debug("beginning to resolve all pickers")
-
         while(this.regex.pickOne.test(output))
         {
             const firstMatch = output.match(this.regex.pickOne)
             const pickArr = firstMatch[0]
                 .substr(1, firstMatch[0].length - 2) // trim the [ ]
                 .split(/,\s*/) // split into an array of strings
-            console.debug("Picking one from:", pickArr)
             const choice = pickArr[Math.floor(Math.random() * pickArr.length)]
-            console.debug(`Picked: ${choice}`)
             output = output.replace(this.regex.pickOne, choice.toLowerCase())
         }
-
-        console.debug("finished resolving all pickers")
         return output
     }
 }
