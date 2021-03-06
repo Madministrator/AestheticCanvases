@@ -39,5 +39,5 @@ Tyr, god of justice
 Umberlee, goddess of the sea
 Waukeen, goddess of trade
 
--- TODO: Dieties of Greyhack, Dragonlance, Eberron, and other non-human dieties
+-- TODO: Dieties of Greyhawk, Dragonlance, Eberron, and other non-human dieties
 `

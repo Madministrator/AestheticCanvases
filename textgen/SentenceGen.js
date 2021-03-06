@@ -24,7 +24,7 @@ class SentenceGen {
         this.regex = {
             categoryRef: /\|[\w\- \.]+\|/, // don't want global, break at first match.
             aOrAn: /<a>/,
-            pickOne: /\[[\w, \|]+\]/
+            pickOne: /\[[\w, \-\|]+\]/
         }
     }
 

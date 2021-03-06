@@ -2,10 +2,23 @@
 <html>
     <head>
         <title>NPC generator | Madministrator's Procedural Playground</title>
+        <!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
     </head>
     <body>
-        <p id="randomNPC"></p>
-        <button type="button" onclick="generateNPC()">Generate a new npc</button>
+        <!-- <p id="randomNPC"></p>
+        <button type="button" onclick="generateNPC()">Generate a new npc</button> -->
+        <div class="container text-center">
+            <button type="button" class="btn, btn-primary btn-lg"
+            style="margin: 3em auto;" onclick="generateNPC()">Generate a new npc</button>
+            <h4 id="randomNPC" style="margin-top: 3em;"></h4>
+        </div>
+        
+        
         <script src="textgen/D&D_NPC/Names.js"></script>
         <script src="textgen/D&D_NPC/Diety.js"></script>
         <script src="textgen/D&D_NPC/NpcTraits.js"></script>
