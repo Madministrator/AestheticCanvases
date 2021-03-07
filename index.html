@@ -53,11 +53,22 @@
 				</div>
 			</div>
 		</div><!--End of Row 1-->
+		<div class="row text-center">
+			<div class="col col-lg-3">
+				<div class="card border-secondary">
+					<div class="card-header"><a href="ColorWheel.html">Color Wheel</a></div>
+					<div class="card-body">
+						<p class="card-text">Customizable spinning wheel of perplexing patterns based on a fun gif I once saw.</p>
+						<canvas id="ColorWheel"></canvas>
+					</div>
+				</div>
+			</div>
+		</div><!--End of Row 2-->
 
 		<h2 class="text-center" style="margin-bottom: 1em; margin-top: 1em;">Text generation</h2>
 
 		<div class="row text-center">
-			<div class="col">
+			<div class="col-lg-3">
 				<div class="card border-secondary">
 					<div class="card-header"><a href="npc-gen.html">D&D NPC generator</a></div>
 					<div class="card-body">
@@ -78,6 +89,7 @@
 	<script src="scripts/meteor-shower.js"></script>
 	<script src="scripts/gameOfLife.js"></script>
 	<script src="scripts/spiralgraph.js"></script>
+	<script src="scripts/ColorWheel.js"></script>
 	<script>
 		window.addEventListener('load', function () {
 			let clock = new Clock(document.getElementById('clock'))
@@ -103,6 +115,12 @@
 				spiral.movePoints()
 			}
 			spiral.drawSpiral()
+
+			let wheel = new ColorWheel(document.getElementById("ColorWheel"))
+			wheel.dotSize = 1
+			for (let i = 0; i < 5; i++) {
+				wheel.drawWheel()
+			}
 		})
 	</script>
 </body>

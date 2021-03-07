@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Color Wheel | Madministrator's Procedural Playground</title>
+        <!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container text-center">
+            <canvas id="cwCanvas" style="height: 99%; width: 99.5%" onclick="toggleAnimation()"></canvas>
+            <div id="controls">
+                <h1>Settings</h1>
+                <h6 class="text-muted">Click on the canvas to pause</h6>
+                <label for="speed">Speed</label>
+                <input type="range" class="custom-range" id="speed"
+                min="0.001" max="0.2" value="0.01" step="0.001"
+                onchange="wheel.rotationSpeed = Number(this.value); wheel.drawWheel();">
+                <label for="rays">Number of rays/spokes on the wheel</label>
+                <input type="range" class="custom-range" id="rays"
+                min="1" max="360" value="100" step="1"
+                onchange="wheel.numRays = Number(this.value); wheel.drawWheel();">
+                <label for="radius">Distance between circles</label>
+                <input type="range" class="custom-range" id="radius"
+                min="0.01" max="0.99" value="0.6" step="0.01"
+                onchange="wheel.radiusFraction = Number(this.value); wheel.drawWheel();">
+            </div>
+        </div>
+        <script src="scripts/ColorWheel.js"></script>
+        <script>
+            let wheel = new ColorWheel(document.getElementById('cwCanvas'))
+            // set the values to the real values in the wheel.
+            document.getElementById("speed").value = wheel.rotationSpeed
+            document.getElementById("rays").value = wheel.numRays
+            let animated = true
+            let raf = window.requestAnimationFrame(animate)
+
+            function toggleAnimation() {
+                if (animated) {
+                    animated = false
+                    window.cancelAnimationFrame(raf)
+                } else {
+                    animated = true
+                    animate()
+                }
+            }
+
+            function animate() {
+                wheel.drawWheel()
+                raf = window.requestAnimationFrame(animate)
+            }
+
+        </script>
+    </body>
+</html>

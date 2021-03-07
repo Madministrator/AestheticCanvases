@@ -5,6 +5,14 @@ class SpiralGraph {
     constructor(canvas) {
         this.canvas = canvas
         this.ctx = canvas.getContext('2d')
+        // perform a DPI resolution fix on the canvas
+        let dpi = window.devicePixelRatio
+        // get css properties to match up
+		let style_height = +getComputedStyle(canvas).getPropertyValue("height").slice(0, -2)
+		let style_width = +getComputedStyle(canvas).getPropertyValue("width").slice(0, -2)
+		// scale the canvas for better DPI
+		canvas.setAttribute('height', style_height * dpi)
+		canvas.setAttribute('width', style_width * dpi)
         // Appearance Based Features
         this.dotColor = 'white'
         // animation variables

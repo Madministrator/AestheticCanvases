@@ -201,7 +201,7 @@ class Clock {
 
     /**
      * 
-     * @param {Number} theta The angle in radians to draw the hand at, assuming
+     * @param {Number} theta The angle in radians to draw the hand at, assuming the hand points outwards from (0,0)
      * 
      * @param {Number} length The length of the hand
      * @param {Number} width The width of the hand
